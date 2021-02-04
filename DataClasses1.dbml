@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="irmarketdb" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLSERVER2008;Initial Catalog=irmarketdb;User ID=irmarketuser" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="irmarketdbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_Comments" Member="tbl_Comments">
+    <Type Name="tbl_Comment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsRead" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Association Name="tbl_Post_tbl_Comment" Member="tbl_Post" ThisKey="PostId" OtherKey="id" Type="tbl_Post" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Options" Member="tbl_Options">
+    <Type Name="tbl_Option">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Footer" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Aboutus" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Contactus" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Tell1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Tell2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Users" Member="tbl_Users">
+    <Type Name="tbl_User">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NickName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Role" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_User_tbl_Post" Member="tbl_Posts" ThisKey="id" OtherKey="UserId" Type="tbl_Post" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Posts" Member="tbl_Posts">
+    <Type Name="tbl_Post">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(180) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrlImage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbl_Post_tbl_Comment" Member="tbl_Comments" ThisKey="id" OtherKey="PostId" Type="tbl_Comment" />
+      <Association Name="tbl_User_tbl_Post" Member="tbl_User" ThisKey="UserId" OtherKey="id" Type="tbl_User" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_buy" Member="tbl_buys">
+    <Type Name="tbl_buy">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tell" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="codepost" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="date" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="transactionid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ip" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_buy2" Member="tbl_buy2s">
+    <Type Name="tbl_buy2">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.PDeleteComments" Method="PDeleteComments">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PUpdateUsers" Method="PUpdateUsers">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NickName" Parameter="nickName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Role" Parameter="role" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PDeleteOption" Method="PDeleteOption">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PDeletePosts" Method="PDeletePosts">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PDeleteUsers" Method="PDeleteUsers">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PIComments" Method="PIComments">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Title" Parameter="title" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Message" Parameter="message" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Date" Parameter="date" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="isRead" Type="System.Byte" DbType="TinyInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PInsertOption" Method="PInsertOption">
+    <Parameter Name="Title" Parameter="title" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Footer" Parameter="footer" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Aboutus" Parameter="aboutus" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Contactus" Parameter="contactus" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Tell1" Parameter="tell1" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Tell2" Parameter="tell2" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PInsertUsers" Method="PInsertUsers">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NickName" Parameter="nickName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Role" Parameter="role" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PUpdateComments" Method="PUpdateComments">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Title" Parameter="title" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Message" Parameter="message" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Date" Parameter="date" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="isRead" Type="System.Byte" DbType="TinyInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PUpdateOption" Method="PUpdateOption">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Title" Parameter="title" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Footer" Parameter="footer" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Aboutus" Parameter="aboutus" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Contactus" Parameter="contactus" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Tell1" Parameter="tell1" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Tell2" Parameter="tell2" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PUpdatePosts" Method="PUpdatePosts">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="title" Type="System.String" DbType="NVarChar(180)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Date" Parameter="date" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Image" Parameter="image" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Parameter Name="Price" Parameter="price" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PInsertPosts" Method="PInsertPosts">
+    <Parameter Name="title" Type="System.String" DbType="NVarChar(180)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Date" Parameter="date" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Image" Parameter="image" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Parameter Name="Price" Parameter="price" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UrlImage" Parameter="urlImage" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.pibuy2" Method="pibuy2">
+    <Parameter Name="userid" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="price" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.pibuy" Method="pibuy">
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="tell" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="codepost" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="address" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="date" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="transactionid" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ip" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.pdbuy" Method="pdbuy">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.pubuy" Method="pubuy">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="transactionid" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
