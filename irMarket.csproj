@@ -19,6 +19,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -338,6 +340,10 @@
     <Content Include="css\resetAdminPanel.css" />
     <Content Include="css\style.css" />
     <Content Include="css\styleAdminPanel.css" />
+    <Content Include="Database\irmarketdb.mdf" />
+    <Content Include="Database\irmarketdb_log.ldf">
+      <DependentUpon>irmarketdb.mdf</DependentUpon>
+    </Content>
     <Content Include="Default.aspx" />
     <Content Include="DetailsProduct.aspx" />
     <Content Include="img\1.jpg" />

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace irMarket
 {
@@ -15,7 +11,7 @@ namespace irMarket
             DataClasses1DataContext db = new DataClasses1DataContext();
             var q = db.tbl_Posts;
 
-            
+
 
             var q1 = db.tbl_Options.Where(c => c.id == 1).Single();
             this.Title = q1.Title;
