@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace irMarket
 {
@@ -43,7 +40,7 @@ namespace irMarket
             }
             else
             {
-                DataTable dt = (DataTable) Session["basket"];
+                DataTable dt = (DataTable)Session["basket"];
                 DataRow dr = dt.Rows.Add();
                 dr["id"] = Request.QueryString["id"];
                 dr["name"] = lblname.Text;
@@ -61,7 +58,7 @@ namespace irMarket
         {
             MultiView1.SetActiveView(vbasket);
 
-            Repeater1.DataSource = (DataTable) Session["basket"];
+            Repeater1.DataSource = (DataTable)Session["basket"];
             Repeater1.DataBind();
 
             lblpricef.Text = CalculatePriceFinally();
@@ -94,12 +91,12 @@ namespace irMarket
             db.pibuy(txtname.Text, txtemail.Text, txttell.Text, txtpostcode.Text, txtaddress.Text, project.classes.Funcs.Miladi2Shamsi(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 1), "0", GetIPAddress());
             db.SubmitChanges();
 
-            var id=(from q in db.tbl_buys select q.id).Max();
+            var id = (from q in db.tbl_buys select q.id).Max();
 
-            DataTable dt =(DataTable) Session["basket"];
+            DataTable dt = (DataTable)Session["basket"];
             for (int i = 0; dt.Rows.Count > i; i++)
             {
-                db.pibuy2(id.ToString(),dt.Rows[i].ItemArray.GetValue(1).ToString(),int.Parse(dt.Rows[i].ItemArray.GetValue(2).ToString()));
+                db.pibuy2(id.ToString(), dt.Rows[i].ItemArray.GetValue(1).ToString(), int.Parse(dt.Rows[i].ItemArray.GetValue(2).ToString()));
                 db.SubmitChanges();
             }
 
@@ -108,7 +105,7 @@ namespace irMarket
 
             PayLine payline = new PayLine();
 
-            double price = Convert.ToDouble( lblpricef.Text);
+            double price = Convert.ToDouble(lblpricef.Text);
 
 
             string result = payline.Send("http://payline.ir/payment/gateway-send", "e3a7f-26eb3-f31b6-95d13-f55960d8c98b793c1bcbc87f20f4", price, "http%3A%2F%2Fappirani.ir%2Fresult.aspx");
@@ -118,7 +115,7 @@ namespace irMarket
             {
                 Response.Redirect("http://payline.ir/payment/gateway-" + result);
             }
-               
+
         }
 
 
